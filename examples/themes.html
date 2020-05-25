@@ -143,6 +143,7 @@ editor.setPreviewTheme('theme-name');
             
             function themeSelect(id, themes, lsKey, callback)
             {
+                console.log(id)
                 var select = $("#" + id);
                 
                 for (var i = 0, len = themes.length; i < len; i ++)
@@ -171,18 +172,18 @@ editor.setPreviewTheme('theme-name');
                 return select;
             }
 
-            $(function() {                
+            $(function() {      
                 testEditor = editormd("test-editormd", {
                     width        : "90%",
                     height       : 720,
                     
                     // Editor.md theme, default or dark, change at v1.5.0
                     // You can also custom css class .editormd-preview-theme-xxxx
-                    theme        : (localStorage.theme) ? localStorage.theme : "dark",
+                    theme        : (localStorage.theme) ? localStorage.theme : "default",
                     
                     // Preview container theme, added v1.5.0
                     // You can also custom css class .editormd-preview-theme-xxxx
-                    previewTheme : (localStorage.previewTheme) ? localStorage.previewTheme : "dark", 
+                    previewTheme : (localStorage.previewTheme) ? localStorage.previewTheme : "default", 
                     
                     // Added @v1.5.0 & after version is CodeMirror (editor area) theme
                     editorTheme  : (localStorage.editorTheme) ? localStorage.editorTheme : "pastel-on-dark", 

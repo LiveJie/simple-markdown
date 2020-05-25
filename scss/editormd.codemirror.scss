@@ -35,7 +35,6 @@
 		pre {
 			font-size: 14px;
             padding: 0 12px;
-            background: transparent;
 		}
     }
     
@@ -54,20 +53,6 @@
     .CodeMirror, .CodeMirror-scroll, #{$prefix}preview {
         -webkit-overflow-scrolling : touch;
     }
-// 修改样式
-    .CodeMirror {
-        .CodeMirror-scroll {
-            background: #1e1e1e;
-            .CodeMirror-gutters {
-                border: none;
-                .CodeMirror-linenumbers {
-                    width: 50px;
-                    background: #333;
-                }
-            }
-        }
-    }
-
 
     .styled-background { 
         background-color: #ff7; 

@@ -629,6 +629,7 @@
          */
         
         setEditorTheme : function(theme) {  
+            console.log(this, "66666666")
             var settings   = this.settings;  
             settings.editorTheme = theme;  
             
@@ -636,7 +637,6 @@
             {
                 editormd.loadCSS(settings.path + "codemirror/theme/" + settings.editorTheme);
             }
-            
             this.cm.setOption("theme", theme);
             
             return this;
