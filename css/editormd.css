@@ -9,7 +9,33 @@
  * {@link       https://github.com/pandao/editor.md}
  * @updateTime  2015-06-09
  */
-
+/*
+*extend css
+**/
+.extend-box {
+  width: 100%;
+}
+.extend-box .local-button {
+  width: 80%;
+  margin: 0 auto;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  background: #f1f1f1;
+  border: 1px solid #999;
+  cursor: pointer;
+}
+.extend-box .online-button {
+  width: 80%;
+  margin: 0 auto;
+  height: 45px;
+  line-height: 45px;
+  margin-top: 20px;
+  text-align: center;
+  background: #f1f1f1;
+  border: 1px solid #999;
+  cursor: pointer;
+}
 @charset "UTF-8";
 /*! prefixes.scss v0.1.0 | Author: Pandao | https://github.com/pandao/prefixes.scss | MIT license | Copyright (c) 2015 */
 .editormd {

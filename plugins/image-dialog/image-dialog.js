@@ -46,30 +46,31 @@
                     action += "&callback=" + settings.uploadCallbackURL + "&dialog_id=editormd-image-dialog-" + guid;
                 }
 
-                var dialogContent = ( (settings.imageUpload) ? "<form action=\"" + action +"\" target=\"" + iframeName + "\" method=\"post\" enctype=\"multipart/form-data\" class=\"" + classPrefix + "form\">" : "<div class=\"" + classPrefix + "form\">" ) +
-                                        ( (settings.imageUpload) ? "<iframe name=\"" + iframeName + "\" id=\"" + iframeName + "\" guid=\"" + guid + "\"></iframe>" : "" ) +
-                                        "<label>" + imageLang.url + "</label>" +
-                                        "<input type=\"text\" data-url />" + (function(){
-                                            return (settings.imageUpload) ? "<div class=\"" + classPrefix + "file-input\">" +
-                                                                                "<input type=\"file\" name=\"" + classPrefix + "image-file\" accept=\"image/*\" />" +
-                                                                                "<input type=\"submit\" value=\"" + imageLang.uploadButton + "\" />" +
-                                                                            "</div>" : "";
-                                        })() +
-                                        "<br/>" +
-                                        "<label>" + imageLang.alt + "</label>" +
-                                        "<input type=\"text\" value=\"" + selection + "\" data-alt />" +
-                                        "<br/>" +
-                                        "<label>" + imageLang.link + "</label>" +
-                                        "<input type=\"text\" value=\"http://\" data-link />" +
-                                        "<br/>" +
-                                    ( (settings.imageUpload) ? "</form>" : "</div>");
+                var dialogContent = ("<div class='extend-box'><div class='local-button'>本地图片</div> <div class='online-button'>线上图片</div></div>");
+                // var dialogContent = ( (settings.imageUpload) ? "<form action=\"" + action +"\" target=\"" + iframeName + "\" method=\"post\" enctype=\"multipart/form-data\" class=\"" + classPrefix + "form\">" : "<div class=\"" + classPrefix + "form\">" ) +
+                //                         ( (settings.imageUpload) ? "<iframe name=\"" + iframeName + "\" id=\"" + iframeName + "\" guid=\"" + guid + "\"></iframe>" : "" ) +
+                //                         "<label>" + imageLang.url + "</label>" +
+                //                         "<input type=\"text\" data-url />" + (function(){
+                //                             return (settings.imageUpload) ? "<div class=\"" + classPrefix + "file-input\">" +
+                //                                                                 "<input type=\"file\" name=\"" + classPrefix + "image-file\" accept=\"image/*\" />" +
+                //                                                                 "<input type=\"submit\" value=\"" + imageLang.uploadButton + "\" />" +
+                //                                                             "</div>" : "";
+                //                         })() +
+                //                         "<br/>" +
+                //                         "<label>" + imageLang.alt + "</label>" +
+                //                         "<input type=\"text\" value=\"" + selection + "\" data-alt />" +
+                //                         "<br/>" +
+                //                         "<label>" + imageLang.link + "</label>" +
+                //                         "<input type=\"text\" value=\"http://\" data-link />" +
+                //                         "<br/>" +
+                //                     ( (settings.imageUpload) ? "</form>" : "</div>");
 
                 //var imageFooterHTML = "<button class=\"" + classPrefix + "btn " + classPrefix + "image-manager-btn\" style=\"float:left;\">" + imageLang.managerButton + "</button>";
 
                 dialog = this.createDialog({
                     title      : imageLang.title,
                     width      : (settings.imageUpload) ? 465 : 380,
-                    height     : 254,
+                    height     : 200,
                     name       : dialogName,
                     content    : dialogContent,
                     mask       : settings.dialogShowMask,
@@ -79,50 +80,50 @@
                         opacity         : settings.dialogMaskOpacity,
                         backgroundColor : settings.dialogMaskBgColor
                     },
-                    buttons : {
-                        enter : [lang.buttons.enter, function() {
-                            var url  = this.find("[data-url]").val();
-                            var alt  = this.find("[data-alt]").val();
-                            var link = this.find("[data-link]").val();
+                    // buttons : {
+                    //     enter : [lang.buttons.enter, function() {
+                    //         var url  = this.find("[data-url]").val();
+                    //         var alt  = this.find("[data-alt]").val();
+                    //         var link = this.find("[data-link]").val();
 
-                            if (url === "")
-                            {
-                                alert(imageLang.imageURLEmpty);
-                                return false;
-                            }
+                    //         if (url === "")
+                    //         {
+                    //             alert(imageLang.imageURLEmpty);
+                    //             return false;
+                    //         }
 
-							var altAttr = (alt !== "") ? " \"" + alt + "\"" : "";
+					// 		var altAttr = (alt !== "") ? " \"" + alt + "\"" : "";
 
-                            if (link === "" || link === "http://")
-                            {
-                                cm.replaceSelection("![" + alt + "](" + url + altAttr + ")");
-                            }
-                            else
-                            {
-                                cm.replaceSelection("[![" + alt + "](" + url + altAttr + ")](" + link + altAttr + ")");
-                            }
+                    //         if (link === "" || link === "http://")
+                    //         {
+                    //             cm.replaceSelection("![" + alt + "](" + url + altAttr + ")");
+                    //         }
+                    //         else
+                    //         {
+                    //             cm.replaceSelection("[![" + alt + "](" + url + altAttr + ")](" + link + altAttr + ")");
+                    //         }
 
-                            if (alt === "") {
-                                cm.setCursor(cursor.line, cursor.ch + 2);
-                            }
+                    //         if (alt === "") {
+                    //             cm.setCursor(cursor.line, cursor.ch + 2);
+                    //         }
 
-                            this.hide().lockScreen(false).hideMask();
+                    //         this.hide().lockScreen(false).hideMask();
 
-                            //删除对话框
-                            this.remove();
+                    //         //删除对话框
+                    //         this.remove();
 
-                            return false;
-                        }],
+                    //         return false;
+                    //     }],
 
-                        cancel : [lang.buttons.cancel, function() {
-                            this.hide().lockScreen(false).hideMask();
+                    //     cancel : [lang.buttons.cancel, function() {
+                    //         this.hide().lockScreen(false).hideMask();
 
-                            //删除对话框
-                            this.remove();
+                    //         //删除对话框
+                    //         this.remove();
                             
-                            return false;
-                        }]
-                    }
+                    //         return false;
+                    //     }]
+                    // }
                 });
 
                 dialog.attr("id", classPrefix + "image-dialog-" + guid);
