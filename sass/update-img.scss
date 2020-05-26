@@ -1,0 +1,84 @@
+.update-wrapper {
+    max-width: 600px;
+    .input-box {
+        width: 100%;
+        border-radius: 6px;
+        border: 1px dashed #ddd;
+        padding: 10px 0 20px 0;
+        cursor: pointer;
+        .svg-box {
+            width: 48px;
+            height: 48px;
+            margin: 20px auto 30px auto;
+            svg {
+                width: 48px;
+                height: 48px;
+                color: #40a9ff;
+            }
+        }
+        .title {
+            margin: 0 0 4px;
+            color: rgba(0,0,0,.85);
+            font-size: 16px;
+            text-align: center;
+        }
+        .desc {
+            color: rgba(0,0,0,.45);
+            font-size: 14px;
+            text-align: center;
+        }
+    }
+    .file-list {
+        margin-top: 20px;
+        width: 100%;
+        border: 1px solid #ddd;
+        .list {
+            height: 60px;
+            position: relative;
+            .left {
+                float: left;
+                width: 80%;
+                height: 100%;
+                box-sizing: border-box;
+                img {
+                    width: 48px;
+                    height: 48px;
+                    display: block;
+                    float: left;
+                    margin: 6px 10px;
+                }
+                .name {
+                    font-size: 16px;
+                    color: #666;
+                    float: left;
+                    line-height: 60px;
+                }
+            }
+            .right {
+                float: right;
+                width: 50px;
+                height: 100%;
+                box-sizing: border-box;
+                cursor: pointer;
+                &:hover {
+                    svg {
+                        color: red;
+                    }
+                }
+                svg {
+                    float: right;
+                    margin-top: 20px;
+                    margin-right: 10px;
+                    color: #999;
+                }
+            }
+            .file-list-linear {
+                width: 0%;
+                height: 100%;
+                position: absolute;
+                z-index: 1;
+                background: rgba(64, 169, 255, .8);
+            }
+        }
+    }
+}
