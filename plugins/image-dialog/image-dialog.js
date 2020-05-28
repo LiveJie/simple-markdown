@@ -45,8 +45,8 @@
                 {
                     action += "&callback=" + settings.uploadCallbackURL + "&dialog_id=editormd-image-dialog-" + guid;
                 }
-
-                var dialogContent = ("<div class='extend-box'><div class='local-button'>本地图片</div> <div class='online-button'>线上图片</div></div>");
+                let aa = 66
+                var dialogContent = ("<div class='extend-box'><div class='local-button' onclick='console.log(this)'>本地图片</div> <div class='online-button'>线上图片</div></div>");
                 // var dialogContent = ( (settings.imageUpload) ? "<form action=\"" + action +"\" target=\"" + iframeName + "\" method=\"post\" enctype=\"multipart/form-data\" class=\"" + classPrefix + "form\">" : "<div class=\"" + classPrefix + "form\">" ) +
                 //                         ( (settings.imageUpload) ? "<iframe name=\"" + iframeName + "\" id=\"" + iframeName + "\" guid=\"" + guid + "\"></iframe>" : "" ) +
                 //                         "<label>" + imageLang.url + "</label>" +
@@ -66,7 +66,7 @@
                 //                     ( (settings.imageUpload) ? "</form>" : "</div>");
 
                 //var imageFooterHTML = "<button class=\"" + classPrefix + "btn " + classPrefix + "image-manager-btn\" style=\"float:left;\">" + imageLang.managerButton + "</button>";
-
+                
                 dialog = this.createDialog({
                     title      : imageLang.title,
                     width      : (settings.imageUpload) ? 465 : 380,
@@ -80,6 +80,9 @@
                         opacity         : settings.dialogMaskOpacity,
                         backgroundColor : settings.dialogMaskBgColor
                     },
+                    showLocalImageUpdate: function() {
+                        console.log(3333)
+                    }
                     // buttons : {
                     //     enter : [lang.buttons.enter, function() {
                     //         var url  = this.find("[data-url]").val();

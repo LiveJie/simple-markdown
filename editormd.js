@@ -35,7 +35,7 @@
 	}
     
 }(function() {    
-
+    
     /* Require.js assignment replace */
     
     "use strict";
