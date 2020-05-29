@@ -46,15 +46,15 @@
                     action += "&callback=" + settings.uploadCallbackURL + "&dialog_id=editormd-image-dialog-" + guid;
                 }
                 let aa = 66
-                var dialogContent = ("<div class='extend-box'><div class='local-button' onclick='console.log(this)'>本地图片</div> <div class='online-button'>线上图片</div></div>");
+                var dialogContent = ("<div class='extend-box'><div class='local-button' onclick='console.log(window.createImage())'>本地图片</div> <div class='online-button'>线上图片</div></div>");
                 // var dialogContent = ( (settings.imageUpload) ? "<form action=\"" + action +"\" target=\"" + iframeName + "\" method=\"post\" enctype=\"multipart/form-data\" class=\"" + classPrefix + "form\">" : "<div class=\"" + classPrefix + "form\">" ) +
                 //                         ( (settings.imageUpload) ? "<iframe name=\"" + iframeName + "\" id=\"" + iframeName + "\" guid=\"" + guid + "\"></iframe>" : "" ) +
                 //                         "<label>" + imageLang.url + "</label>" +
                 //                         "<input type=\"text\" data-url />" + (function(){
                 //                             return (settings.imageUpload) ? "<div class=\"" + classPrefix + "file-input\">" +
-                //                                                                 "<input type=\"file\" name=\"" + classPrefix + "image-file\" accept=\"image/*\" />" +
-                //                                                                 "<input type=\"submit\" value=\"" + imageLang.uploadButton + "\" />" +
-                //                                                             "</div>" : "";
+                //                         "<input type=\"file\" name=\"" + classPrefix + "image-file\" accept=\"image/*\" />" +
+                //                         "<input type=\"submit\" value=\"" + imageLang.uploadButton + "\" />" +
+                //                         "</div>" : "";
                 //                         })() +
                 //                         "<br/>" +
                 //                         "<label>" + imageLang.alt + "</label>" +
@@ -80,9 +80,6 @@
                         opacity         : settings.dialogMaskOpacity,
                         backgroundColor : settings.dialogMaskBgColor
                     },
-                    showLocalImageUpdate: function() {
-                        console.log(3333)
-                    }
                     // buttons : {
                     //     enter : [lang.buttons.enter, function() {
                     //         var url  = this.find("[data-url]").val();

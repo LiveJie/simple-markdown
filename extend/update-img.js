@@ -10,12 +10,12 @@
 (function () {
 
     var factory = function () {
+        let _this = this
         this.Message = null;
+        this.fileList = [];
         // 插件初始化
         this.init = function () {
-            _this = this
             this.Message = new Message()
-            console.log(this.Message)
             let updateDom = document.createElement("div")
             updateDom.setAttribute("id", "update-wrapper")
             updateDom.className = "update-wrapper"
@@ -46,6 +46,7 @@
                             _this.Message.error("请上传正确格式的图片！")
                             return false
                         }
+                        _this.fileList.push(item)
                         var read = new FileReader();
                         read.readAsDataURL(item);
                         read.onload = function (e) {
@@ -63,19 +64,21 @@
             // 拖拽图片
             box.ondrop = function (e){
                 e.preventDefault();
-                var file=e.dataTransfer.files[0];//获取到第一个上传的文件对象
-                let arr = ["png", "jpeg", "gif"]
-                if(!file.type.match("image")) {
-                    _this.Message.error("请上传正确格式的图片！")
-                    return false
-                }
-                var fr=new FileReader();//实例FileReader对象
-                fr.readAsDataURL(file);//把上传的文件对象转换成url
-                fr.onload=function (e){
-                    addFileList(this.result, file.name)
-                    // var Url=e.target.result;//上传文件的URL
-                    var Url=this.result;//上传文件的URL
-                    // box.innerHTML+='<img src="'+Url+'" alt="">';
+                var files = e.dataTransfer.files;//获取到第一个上传的文件对象
+                for(let file of files) {
+                    if(!file.type.match("image")) {
+                        _this.Message.error("请上传正确格式的图片！")
+                        return false
+                    }
+                    _this.fileList.push(file)
+                    var fr=new FileReader();//实例FileReader对象
+                    fr.readAsDataURL(file);//把上传的文件对象转换成url
+                    fr.onload=function (e){
+                        addFileList(this.result, file.name)
+                        // var Url=e.target.result;//上传文件的URL
+                        var Url=this.result;//上传文件的URL
+                        // box.innerHTML+='<img src="'+Url+'" alt="">';
+                    }
                 }
             }
         }()
@@ -103,17 +106,20 @@
                 document.body.appendChild(divDom)
                 setTimeout(function(){
                     divDom.className = className || "message"
-                },0)
+                },50)
                 setTimeout(function(){
                     document.body.removeChild(divDom)
                 }, duration * 1000)
             }
         }
 
+        this.getFileList = function () {
+            return this.fileList
+        }
+
         //加载进度条
-        this.speedProgress = function () {
-            const linearDom = document.getElementsByClassName("file-list-linear")
-            const lastLinearDom = linearDom[linearDom.length - 1]
+        this.speedProgress = function (e) {
+            const lastLinearDom = e.children[e.children.length - 1]
             let w = ~~lastLinearDom.style.width.replace("%", "")
             if(w >= 100) {
                 lastLinearDom.style.width = '';
@@ -124,8 +130,8 @@
                 }else {
                     lastLinearDom.style.width = w + randomNum + '%';
                     setTimeout(function(){
-                        speedProgress()
-                        },100)
+                        speedProgress(e)
+                    },100)
                 }
             }
         }
@@ -150,8 +156,8 @@
             let divDom = document.createElement("div")
             divDom.className = "list"
             divDom.innerHTML = html;
-            
             fileListDom.appendChild(divDom)
+            _this.speedProgress(divDom)
         }
 
         //点击删除元素

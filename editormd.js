@@ -481,7 +481,7 @@
             {
                 this.loadQueues();
             }
-
+            
             return this;
         },
         
@@ -1297,6 +1297,7 @@
             return $.proxy(editormd.createDialog, this)(options);
         },
         
+
         /**
          * 创建关于Editor.md的对话框
          * Create about Editor.md dialog
