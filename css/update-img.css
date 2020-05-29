@@ -1,9 +1,20 @@
 .update-wrapper {
-  max-width: 600px;
-  margin: 0 auto;
+  width: 80%;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  background: #fff;
+  padding: 20px 0 30px 0;
 }
 
-.update-wrapper .input-box {
+.update-wrapper .input-box-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  margin-top: 50px;
+}
+
+.update-wrapper .input-box-wrapper .input-box {
   width: 100%;
   border-radius: 6px;
   border: 1px dashed #ddd;
@@ -11,51 +22,51 @@
   cursor: pointer;
 }
 
-.update-wrapper .input-box .svg-box {
+.update-wrapper .input-box-wrapper .input-box .svg-box {
   width: 48px;
   height: 48px;
   margin: 20px auto 30px auto;
 }
 
-.update-wrapper .input-box .svg-box svg {
+.update-wrapper .input-box-wrapper .input-box .svg-box svg {
   width: 48px;
   height: 48px;
   color: #40a9ff;
 }
 
-.update-wrapper .input-box .title {
+.update-wrapper .input-box-wrapper .input-box .title {
   margin: 0 0 4px;
   color: rgba(0, 0, 0, 0.85);
   font-size: 16px;
   text-align: center;
 }
 
-.update-wrapper .input-box .desc {
+.update-wrapper .input-box-wrapper .input-box .desc {
   color: rgba(0, 0, 0, 0.45);
   font-size: 14px;
   text-align: center;
 }
 
-.update-wrapper .file-list-wrapper {
+.update-wrapper .input-box-wrapper .file-list-wrapper {
   margin-top: 20px;
   width: 100%;
 }
 
-.update-wrapper .file-list-wrapper .list {
+.update-wrapper .input-box-wrapper .file-list-wrapper .list {
   height: 60px;
   position: relative;
   border: 1px solid #ddd;
   margin-bottom: 10px;
 }
 
-.update-wrapper .file-list-wrapper .list .left {
+.update-wrapper .input-box-wrapper .file-list-wrapper .list .left {
   float: left;
   width: 80%;
   height: 100%;
   box-sizing: border-box;
 }
 
-.update-wrapper .file-list-wrapper .list .left img {
+.update-wrapper .input-box-wrapper .file-list-wrapper .list .left img {
   width: 48px;
   height: 48px;
   display: block;
@@ -63,14 +74,14 @@
   margin: 6px 10px;
 }
 
-.update-wrapper .file-list-wrapper .list .left .name {
+.update-wrapper .input-box-wrapper .file-list-wrapper .list .left .name {
   font-size: 16px;
   color: #666;
   float: left;
   line-height: 60px;
 }
 
-.update-wrapper .file-list-wrapper .list .right {
+.update-wrapper .input-box-wrapper .file-list-wrapper .list .right {
   float: right;
   width: 50px;
   height: 100%;
@@ -78,23 +89,52 @@
   cursor: pointer;
 }
 
-.update-wrapper .file-list-wrapper .list .right:hover svg {
+.update-wrapper .input-box-wrapper .file-list-wrapper .list .right:hover svg {
   color: red;
 }
 
-.update-wrapper .file-list-wrapper .list .right svg {
+.update-wrapper .input-box-wrapper .file-list-wrapper .list .right svg {
   float: right;
   margin-top: 20px;
   margin-right: 10px;
   color: #999;
 }
 
-.update-wrapper .file-list-wrapper .list .file-list-linear {
+.update-wrapper .input-box-wrapper .file-list-wrapper .list .file-list-linear {
   width: 0%;
   height: 100%;
   position: absolute;
   z-index: 1;
   background: rgba(64, 169, 255, 0.8);
+}
+
+.update-wrapper .input-box-wrapper .button-wrapper {
+  width: 300px;
+  margin: 20px auto;
+}
+
+.update-wrapper .input-box-wrapper .button-wrapper .btn {
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #f1f1f1;
+  border-radius: 2px;
+  text-align: center;
+  color: #999;
+  float: left;
+  cursor: pointer;
+}
+
+.update-wrapper .input-box-wrapper .button-wrapper .ensure {
+  margin-right: 30px;
+}
+
+.update-wrapper .input-box-wrapper .button-wrapper .ensure:hover {
+  background: #f1f1f1;
+}
+
+.update-wrapper .input-box-wrapper .button-wrapper .cencel:hover {
+  background: #f1f1f1;
 }
 
 .message {

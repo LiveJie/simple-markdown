@@ -16,7 +16,6 @@
 		var pluginName   = "image-dialog";
 
 		exports.fn.imageDialog = function() {
-
             var _this       = this;
             var cm          = this.cm;
             var lang        = this.lang;
@@ -46,7 +45,7 @@
                     action += "&callback=" + settings.uploadCallbackURL + "&dialog_id=editormd-image-dialog-" + guid;
                 }
                 let aa = 66
-                var dialogContent = ("<div class='extend-box'><div class='local-button' onclick='console.log(window.createImage())'>本地图片</div> <div class='online-button'>线上图片</div></div>");
+                var dialogContent = ("<div class='extend-box'><div class='local-button' onclick='console.log(window.editormd.extendFun.qqq());console.dir(this.parentNode.parentNode.parentNode.remove(this.parentNode.parentNode))'>本地图片</div> <div class='online-button'>线上图片</div></div>");
                 // var dialogContent = ( (settings.imageUpload) ? "<form action=\"" + action +"\" target=\"" + iframeName + "\" method=\"post\" enctype=\"multipart/form-data\" class=\"" + classPrefix + "form\">" : "<div class=\"" + classPrefix + "form\">" ) +
                 //                         ( (settings.imageUpload) ? "<iframe name=\"" + iframeName + "\" id=\"" + iframeName + "\" guid=\"" + guid + "\"></iframe>" : "" ) +
                 //                         "<label>" + imageLang.url + "</label>" +
@@ -65,7 +64,7 @@
                 //                         "<br/>" +
                 //                     ( (settings.imageUpload) ? "</form>" : "</div>");
 
-                //var imageFooterHTML = "<button class=\"" + classPrefix + "btn " + classPrefix + "image-manager-btn\" style=\"float:left;\">" + imageLang.managerButton + "</button>";
+                var imageFooterHTML = "<button class=\"" + classPrefix + "btn " + classPrefix + "image-manager-btn\" style=\"float:left;\">" + imageLang.managerButton + "</button>";
                 
                 dialog = this.createDialog({
                     title      : imageLang.title,
@@ -80,52 +79,54 @@
                         opacity         : settings.dialogMaskOpacity,
                         backgroundColor : settings.dialogMaskBgColor
                     },
-                    // buttons : {
-                    //     enter : [lang.buttons.enter, function() {
-                    //         var url  = this.find("[data-url]").val();
-                    //         var alt  = this.find("[data-alt]").val();
-                    //         var link = this.find("[data-link]").val();
+                    buttons : {
+                        // enter : [lang.buttons.enter, function() {
+                        //     var url  = this.find("[data-url]").val();
+                        //     var alt  = this.find("[data-alt]").val();
+                        //     var link = this.find("[data-link]").val();
 
-                    //         if (url === "")
-                    //         {
-                    //             alert(imageLang.imageURLEmpty);
-                    //             return false;
-                    //         }
+                        //     if (url === "")
+                        //     {
+                        //         alert(imageLang.imageURLEmpty);
+                        //         return false;
+                        //     }
 
-					// 		var altAttr = (alt !== "") ? " \"" + alt + "\"" : "";
+						// 	var altAttr = (alt !== "") ? " \"" + alt + "\"" : "";
 
-                    //         if (link === "" || link === "http://")
-                    //         {
-                    //             cm.replaceSelection("![" + alt + "](" + url + altAttr + ")");
-                    //         }
-                    //         else
-                    //         {
-                    //             cm.replaceSelection("[![" + alt + "](" + url + altAttr + ")](" + link + altAttr + ")");
-                    //         }
+                        //     if (link === "" || link === "http://")
+                        //     {
+                        //         cm.replaceSelection("![" + alt + "](" + url + altAttr + ")");
+                        //     }
+                        //     else
+                        //     {
+                        //         cm.replaceSelection("[![" + alt + "](" + url + altAttr + ")](" + link + altAttr + ")");
+                        //     }
 
-                    //         if (alt === "") {
-                    //             cm.setCursor(cursor.line, cursor.ch + 2);
-                    //         }
+                        //     if (alt === "") {
+                        //         cm.setCursor(cursor.line, cursor.ch + 2);
+                        //     }
 
-                    //         this.hide().lockScreen(false).hideMask();
+                        //     this.hide().lockScreen(false).hideMask();
 
-                    //         //删除对话框
-                    //         this.remove();
+                        //     //删除对话框
+                        //     this.remove();
 
-                    //         return false;
-                    //     }],
+                        //     return false;
+                        // }],
 
-                    //     cancel : [lang.buttons.cancel, function() {
-                    //         this.hide().lockScreen(false).hideMask();
+                        // cancel : [lang.buttons.cancel, function() {
+                        //     console.log(editormd, "this")
+                        //     console.log(this, "this")
+                        //     this.hide().lockScreen(false).hideMask();
 
-                    //         //删除对话框
-                    //         this.remove();
+                        //     //删除对话框
+                        //     this.remove();
                             
-                    //         return false;
-                    //     }]
-                    // }
+                        //     return false;
+                        // }]
+                    }
                 });
-
+                window._dialog = dialog
                 dialog.attr("id", classPrefix + "image-dialog-" + guid);
 
 				if (!settings.imageUpload) {
@@ -191,7 +192,6 @@
 			dialog.find("[type=\"text\"]").val("");
 			dialog.find("[type=\"file\"]").val("");
 			dialog.find("[data-link]").val("http://");
-
 			this.dialogShowMask(dialog);
 			this.dialogLockScreen();
 			dialog.show();

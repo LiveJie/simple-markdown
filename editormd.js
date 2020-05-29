@@ -336,7 +336,22 @@
     editormd.$prettyPrint = null;
     
     var timer, flowchartTimer;
-
+    // 开发中
+    editormd.extendFun = {
+        qqq: function() {
+            // editormd.fn.hide().lockScreen(false).hideMask();
+            let divDom = document.createElement("div")
+            divDom.setAttribute("id", "extend-img-dialog-wrapper")
+            divDom.style.cssText = "position: fixed;width: 100%;height: 100%;top:0;left:0;background:rgba(255,255,255,0.3);background: rgba(0, 0, 0, 0.3);z-index:99999;"
+            document.body.appendChild(divDom)
+            let  newScript = document.createElement('script');
+            newScript.type = 'text/javascript';
+            newScript.src = "./extend/update-img.js";
+            document.body.appendChild(newScript)
+            setInterval(function(){
+            },50)
+        }
+    }
     editormd.prototype    = editormd.fn = {
         state : {
             watching   : false,
@@ -2701,7 +2716,8 @@
             var settings = this.settings;
             
             path = settings.pluginPath + path;
-            
+            console.log(settings.pluginPath)
+            console.log(path)
             if (typeof define === "function") 
             {            
                 if (typeof this[name] === "undefined")
