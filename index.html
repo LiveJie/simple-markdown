@@ -8,7 +8,7 @@
 <body>
     <link rel="stylesheet" href="./css/editormd.css" />
     <link rel="stylesheet" href="./css/update-img.min.css">
-    <div id="test-editor" >
+    <div id="min-editor" >
         <!-- <textarea style="display:none;">### 关于 Editor.md
 
     **Editor.md** 是一款开源的、可嵌入的 Markdown 在线编辑器（组件），基于 CodeMirror、jQuery 和 Marked 构建。
@@ -19,19 +19,12 @@
 <script type="text/javascript">
             
     $(function() {
-        var editor = editormd("test-editor", {
+        var editor = editormd("min-editor", {
             width  : "100%",
             height : "600px",
             emoji: true,
-                        // Editor.md theme, default or dark, change at v1.5.0
-            // You can also custom css class .editormd-preview-theme-xxxx
             theme        : (localStorage.theme) ? localStorage.theme : "dark",
-            
-            // Preview container theme, added v1.5.0
-            // You can also custom css class .editormd-preview-theme-xxxx
             previewTheme : (localStorage.previewTheme) ? localStorage.previewTheme : "default", 
-            
-            // Added @v1.5.0 & after version is CodeMirror (editor area) theme
             editorTheme  : (localStorage.editorTheme) ? localStorage.editorTheme : "pastel-on-dark", 
             path   : "./lib/"
         });

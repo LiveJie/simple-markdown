@@ -338,18 +338,23 @@
     var timer, flowchartTimer;
     // 开发中
     editormd.extendFun = {
-        qqq: function() {
+        hiddleImage: function() {
             // editormd.fn.hide().lockScreen(false).hideMask();
-            let divDom = document.createElement("div")
-            divDom.setAttribute("id", "extend-img-dialog-wrapper")
-            divDom.style.cssText = "position: fixed;width: 100%;height: 100%;top:0;left:0;background:rgba(255,255,255,0.3);background: rgba(0, 0, 0, 0.3);z-index:99999;"
-            document.body.appendChild(divDom)
-            let  newScript = document.createElement('script');
-            newScript.type = 'text/javascript';
-            newScript.src = "./extend/update-img.js";
-            document.body.appendChild(newScript)
-            setInterval(function(){
-            },50)
+            let imgWrapperDom = document.getElementById("extend-img-dialog-wrapper")
+            if(!imgWrapperDom) {
+                let divDom = document.createElement("div")
+                divDom.setAttribute("id", "extend-img-dialog-wrapper")
+                divDom.style.cssText = "position: fixed;width: 100%;height: 100%;top:0;left:0;background:rgba(255,255,255,0.3);background: rgba(0, 0, 0, 0.3);z-index:99999;"
+                document.body.appendChild(divDom)
+                let  newScript = document.createElement('script');
+                newScript.type = 'text/javascript';
+                newScript.src = "./extend/update-img.js";
+                document.body.appendChild(newScript)
+                setInterval(function(){
+                },50)
+            }else {
+                imgWrapperDom.style.display = "block"
+            }
         }
     }
     editormd.prototype    = editormd.fn = {

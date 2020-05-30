@@ -9,6 +9,7 @@
 ;
 (function () {
     var factory = function () {
+        console.log(666)
         let _this = this
         this.Message = null;
         this.fileList = [];
@@ -32,7 +33,7 @@
                 </div>
                 <input id="input-file" type="file" style="display: none;" accept="image/*" multiple></input>
                 <div class="button-wrapper">
-                    <div class="ensure btn">确认</div>
+                    <div class="ensure btn" onclick="confirm()">确认</div>
                     <div class="cencel btn" onclick="hide()">取消</div>
                 </div>
             </div>
@@ -124,8 +125,46 @@
         }
 
         this.hide = function () {
-            this.fileList = [];
+            this.reset();
             imgWrapperDom.style.display = 'none';
+        }
+        this.confirm = function () {
+            this.updateBefore(this.fileList[0])
+            let params = {
+                url: 'http://oss.humorjie.vip/banner-one.jpg',
+                alt: 'qq',
+                link: 'http://oss.humorjie.vip/banner-one.jpg'
+            }
+            dialog.setFileUrl(params)
+            this.reset()
+            imgWrapperDom.style.display = 'none';
+        }
+        this.updateBefore = function(file) {
+            const formData = new FormData()
+            formData.append('file', file)
+            formData.append('fileName', file.name)
+            this.ajax('post', 'http://47.106.155.129:7777/updateImg', formData)
+        }
+        this.ajax = function(type, url, data) {
+            var xhr = null;
+            if(window.XMLHttpRequest){
+                xhr = new XMLHttpRequest();
+            } else {
+                xhr = new ActiveXObject('Microsoft.XMLHTTP')
+            }
+            // xhr.responseType = "blob";
+            xhr.onload = function () {
+                if (this.status == 200) {
+                    console.log(xhr.response)
+                }
+            }
+            xhr.open(type, url, true);
+            data && (xhr.send(data));
+        }
+        this.reset = function() {
+            this.fileList = [];
+            let fileListDom = document.getElementsByClassName("file-list-wrapper")[0]
+            fileListDom.innerHTML = '';
         }
         this.show = function () {
             this.fileList = [];
