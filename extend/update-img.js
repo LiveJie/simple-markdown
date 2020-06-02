@@ -9,7 +9,6 @@
 ;
 (function () {
     var factory = function () {
-        console.log(666)
         let _this = this
         this.Message = null;
         this.fileList = [];
@@ -129,37 +128,21 @@
             imgWrapperDom.style.display = 'none';
         }
         this.confirm = function () {
-            this.updateBefore(this.fileList[0])
-            let params = {
-                url: 'http://oss.humorjie.vip/banner-one.jpg',
-                alt: 'qq',
-                link: 'http://oss.humorjie.vip/banner-one.jpg'
+            if(!window._updateBefore) {
+                _this.Message.error("updateBefore function is not setting!")
+                return
             }
-            dialog.setFileUrl(params)
+            if(!this.fileList.length) {
+                _this.Message.error("上传图片不能为空!")
+            }
+            for(let item of this.fileList) {
+                window._updateBefore(item, function(params) {
+                    dialog.setFileUrl(params)
+                })
+            }
             this.reset()
             imgWrapperDom.style.display = 'none';
-        }
-        this.updateBefore = function(file) {
-            const formData = new FormData()
-            formData.append('file', file)
-            formData.append('fileName', file.name)
-            this.ajax('post', 'http://47.106.155.129:7777/updateImg', formData)
-        }
-        this.ajax = function(type, url, data) {
-            var xhr = null;
-            if(window.XMLHttpRequest){
-                xhr = new XMLHttpRequest();
-            } else {
-                xhr = new ActiveXObject('Microsoft.XMLHTTP')
-            }
-            // xhr.responseType = "blob";
-            xhr.onload = function () {
-                if (this.status == 200) {
-                    console.log(xhr.response)
-                }
-            }
-            xhr.open(type, url, true);
-            data && (xhr.send(data));
+            
         }
         this.reset = function() {
             this.fileList = [];

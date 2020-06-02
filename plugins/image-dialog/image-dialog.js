@@ -108,10 +108,17 @@
                 
 
                 //样式改变
-                dialog.setFileUrl = function({url, alt, link}) {
-                    var url  = url || this.find("[data-url]").val();
-                    var alt  = alt || this.find("[data-alt]").val();
-                    var link = link || this.find("[data-link]").val();
+                dialog.setFileUrl = function() {
+                    let url, alt, link;
+                    if(arguments.length) {
+                        url = arguments[0].url
+                        alt = arguments[0].alt
+                        link = arguments[0].link
+                    }else {
+                        url  = url || this.find("[data-url]").val();
+                        alt  = alt || this.find("[data-alt]").val();
+                        link = link || this.find("[data-link]").val();
+                    }
 
                     if (url === "")
                     {

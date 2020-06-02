@@ -5,6 +5,7 @@
     left: 10%;
     background: #fff;
     padding: 20px 0 30px 0;
+    box-shadow: 0 0 5px #c1c1c1;
     .input-box-wrapper {
         max-width: 600px;
         margin: 0 auto;
@@ -130,7 +131,7 @@
     left: 50%;
     margin-left: -125px;
     text-align: left;
-    padding-left: 20px;
+    padding:0 20px;
     color: #999;
     background: #ebeef5;
     &.success {

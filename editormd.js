@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*
  * Editor.md
  *
@@ -130,7 +131,7 @@
         dialogMaskBgColor    : "#fff",
         dialogMaskOpacity    : 0.1,
         fontSize             : "13px",
-        saveHTMLToTextarea   : false,
+        saveHTMLToTextarea   : true,
         disabledKeyMaps      : [],
         
         onload               : function() {},
@@ -375,9 +376,17 @@
          */
         
         init : function (id, options) {
+            window.addEventListener('message', function (e) {
+                let data = JSON.parse(e.data)
+                if(data.blog_token) {
+                    window._blog_token = data.blog_token
+                }
+            });
             
             options              = options || {};
-            
+            if(options.updateBefore) {
+                window._updateBefore = options.updateBefore
+            }
             if (typeof id === "object")
             {
                 options = id;
@@ -649,7 +658,6 @@
          */
         
         setEditorTheme : function(theme) {  
-            console.log(this, "66666666")
             var settings   = this.settings;  
             settings.editorTheme = theme;  
             
@@ -2038,11 +2046,9 @@
                     
             var newMarkdownDoc = editormd.$marked(cmValue, markedOptions);
             
-            //console.info("cmValue", cmValue, newMarkdownDoc);
             
             newMarkdownDoc = editormd.filterHTMLTags(newMarkdownDoc, settings.htmlDecode);
             
-            //console.error("cmValue", cmValue, newMarkdownDoc);
             
             this.markdownTextarea.text(cmValue);
             
@@ -2721,8 +2727,6 @@
             var settings = this.settings;
             
             path = settings.pluginPath + path;
-            console.log(settings.pluginPath)
-            console.log(path)
             if (typeof define === "function") 
             {            
                 if (typeof this[name] === "undefined")

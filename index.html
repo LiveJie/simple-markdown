@@ -23,11 +23,45 @@
             width  : "100%",
             height : "600px",
             emoji: true,
+            updateBefore: updateBefore, //拓展上传文件方法
             theme        : (localStorage.theme) ? localStorage.theme : "dark",
             previewTheme : (localStorage.previewTheme) ? localStorage.previewTheme : "default", 
             editorTheme  : (localStorage.editorTheme) ? localStorage.editorTheme : "pastel-on-dark", 
             path   : "./lib/"
         });
+
+        function updateBefore(file, callBack) {
+            const formData = new FormData()
+            formData.append('file', file)
+            formData.append('fileName', file.name)
+            ajax('post', location.origin+'/api/updateImg', formData, callBack)
+        }
+
+        function ajax(type, url, data, callBack) {
+            var xhr = null;
+            if(window.XMLHttpRequest){
+                xhr = new XMLHttpRequest();
+            } else {
+                xhr = new ActiveXObject('Microsoft.XMLHTTP')
+            }
+            // xhr.responseType = "blob";
+            xhr.onload = function () {
+                if (this.status == 200) {
+                    let res = JSON.parse(xhr.response)
+                    let params = {
+                        url: res.data,
+                        alt: data.get("fileName"),
+                        link: res.data
+                    }
+                    callBack && callBack(params)
+                }
+            }
+
+            xhr.open(type, url, true);
+            xhr.setRequestHeader('token', window._blog_token);
+            data && (xhr.send(data));
+        }
+
     });
 </script>
 </body>
