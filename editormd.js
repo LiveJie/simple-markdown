@@ -377,9 +377,31 @@
         
         init : function (id, options) {
             window.addEventListener('message', function (e) {
-                let data = JSON.parse(e.data)
-                if(data.blog_token) {
-                    window._blog_token = data.blog_token
+                let data = e.data
+                if(typeof data === 'object') {
+                     if(data.blog_token) {
+                        window._blog_token = data.blog_token
+                    }
+                }else {
+                    let params = {}
+                    switch(data) {
+                        case "getHTML":
+                            params = {
+                                type: 'setHtml',
+                                data: window.editor.getHTML()
+                            }
+                            window.parent.postMessage(params,"*");
+                        break;
+                        case "getValue":
+                            params = {
+                                type: 'setValue',
+                                data: window.editor.getValue()
+                            }
+                            window.parent.postMessage(params,"*");
+                        break;
+                        default:
+                        break;
+                    }
                 }
             });
             
