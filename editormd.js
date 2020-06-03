@@ -378,9 +378,18 @@
         init : function (id, options) {
             window.addEventListener('message', function (e) {
                 let data = e.data
+                //完成事件后响应
+                let str = "window_" + data.type
                 if(typeof data === 'object') {
-                     if(data.blog_token) {
-                        window._blog_token = data.blog_token
+                    switch(data.type) {
+                        case "setToken":
+                            window._blog_token = data.blog_token
+                            window.parent.postMessage(str,"*");
+                            break;
+                        case "setValue":
+                            window.editor.setValue(data.value)
+                            window.parent.postMessage(str,"*");
+                        break;
                     }
                 }else {
                     let params = {}
