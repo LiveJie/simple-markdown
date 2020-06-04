@@ -31,6 +31,13 @@
         });
 
         function updateBefore(file, callBack) {
+            let params = {
+                url: "http://oss.humorjie.vip/1591263666624_咋肥四鸭.jpg.jpg",
+                alt: "66",
+                link: "http://oss.humorjie.vip/1591263666624_咋肥四鸭.jpg.jpg"
+            }
+            callBack && callBack(params)
+            return
             const formData = new FormData()
             formData.append('file', file)
             formData.append('fileName', file.name)
@@ -58,7 +65,7 @@
             }
 
             xhr.open(type, url, true);
-            xhr.setRequestHeader('token', window._blog_token);
+            xhr.setRequestHeader('token', window._blog_token || `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwaG9uZSI6IjE4MzEyMTczNTY4IiwiZXhwIjoxNTkxMjc3ODMwfQ.KJzKUdpmt3eBFLgo7_7UUOcVooC-NH3-0XNEanSS3d8`);
             data && (xhr.send(data));
         }
 

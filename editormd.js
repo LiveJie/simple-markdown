@@ -356,6 +356,9 @@
             }else {
                 imgWrapperDom.style.display = "block"
             }
+        },
+        priviewPic: function() {
+            console.log(111)
         }
     }
     editormd.prototype    = editormd.fn = {
@@ -3579,7 +3582,8 @@
                 }
             }
 
-            var out = "<a href=\"" + href + "\"";
+            // var out = "<a href=\"" + href + "\"";
+            var out = `<a onclick="console.log(window.editormd.extendFun);window.editormd.extendFun.priviewPic(${href})" href='javascript:;'`;
             
             if (atLinkReg.test(title) || atLinkReg.test(text))
             {
@@ -3594,7 +3598,7 @@
             if (title) {
                 out += " title=\"" + title + "\"";
             }
-
+            console.log(text)
             out += ">" + text + "</a>";
 
             return out;
