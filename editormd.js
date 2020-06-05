@@ -357,8 +357,19 @@
                 imgWrapperDom.style.display = "block"
             }
         },
-        priviewPic: function() {
-            console.log(111)
+        priviewPic: function(url) {
+            let divDom = document.createElement("div")
+            divDom.className = "editor-img-show-wrapper"
+            divDom.innerHTML = `<div class="editor-img-box">
+                <div class="img" >
+                    <div class="cancel fa fa-close editormd-dialog-close" onclick="event.stopPropagation();event.preventDefault();document.body.removeChild(this.parentNode.parentNode.parentNode);"></div>
+                    <img src="${url}" alt="" onclick="event.stopPropagation();event.preventDefault();">
+                </div>
+            </div>`
+            document.body.appendChild(divDom)
+            divDom.onclick = function() {
+                document.body.removeChild(divDom)
+            }
         }
     }
     editormd.prototype    = editormd.fn = {
@@ -3583,7 +3594,7 @@
             }
 
             // var out = "<a href=\"" + href + "\"";
-            var out = `<a onclick="console.log(window.editormd.extendFun);window.editormd.extendFun.priviewPic(${href})" href='javascript:;'`;
+            var out = '<a onclick="window.editormd.extendFun.priviewPic(\''+href+'\')" href="javascript:;"';
             
             if (atLinkReg.test(title) || atLinkReg.test(text))
             {
@@ -3598,7 +3609,8 @@
             if (title) {
                 out += " title=\"" + title + "\"";
             }
-            console.log(text)
+            // let fixText = text.substr(0, text.length-1) + `onclick="console.log(window.editormd.extendFun;window.editormd.extendFun.priviewPic(${href})"`+ ">"
+            
             out += ">" + text + "</a>";
 
             return out;

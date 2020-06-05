@@ -14,10 +14,23 @@
     **Editor.md** 是一款开源的、可嵌入的 Markdown 在线编辑器（组件），基于 CodeMirror、jQuery 和 Marked 构建。
         </textarea> -->
     </div>
+    <!-- <div class="editor-img-show-wrapper">
+        <div class="editor-img-box">
+            <div class="img">
+                <div class="cancel fa fa-close editormd-dialog-close" onclick="removeImgModule(this)"></div>
+                <img src="http://oss.humorjie.vip/1591263666624_咋肥四鸭.jpg.jpg" alt="">
+            </div>
+        </div>
+    </div> -->
+    <style>
+
+    </style>
 <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="./editormd.js"></script>
 <script type="text/javascript">
-            
+    // function removeImgModule(e) {
+    //     document.body.removeChild(e.parentNode.parentNode.parentNode)
+    // }    
     $(function() {
         window.editor = editormd("min-editor", {
             width  : "100%",
@@ -31,13 +44,13 @@
         });
 
         function updateBefore(file, callBack) {
-            let params = {
-                url: "http://oss.humorjie.vip/1591263666624_咋肥四鸭.jpg.jpg",
-                alt: "66",
-                link: "http://oss.humorjie.vip/1591263666624_咋肥四鸭.jpg.jpg"
-            }
-            callBack && callBack(params)
-            return
+            // let params = {
+            //     url: "http://oss.humorjie.vip/1591263666624_咋肥四鸭.jpg.jpg",
+            //     alt: "66",
+            //     link: "http://oss.humorjie.vip/1591263666624_咋肥四鸭.jpg.jpg"
+            // }
+            // callBack && callBack(params)
+            // return
             const formData = new FormData()
             formData.append('file', file)
             formData.append('fileName', file.name)
@@ -51,8 +64,18 @@
             } else {
                 xhr = new ActiveXObject('Microsoft.XMLHTTP')
             }
+            xhr.open(type, url, true);
+            //进度条部分
+            xhr.upload.onprogress = function (evt) {
+                if (evt.lengthComputable) {
+                    var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+                }
+            };
+            xhr.setRequestHeader('token', window._blog_token || `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwaG9uZSI6IjE4MzEyMTczNTY4IiwiZXhwIjoxNTkxMzg0NDk5fQ.hdf46Ess-GqxlXecM1WxoeKuEVJPRtAjMUaSUab93JQ`);
+            data && (xhr.send(data));
             // xhr.responseType = "blob";
-            xhr.onload = function () {
+            xhr.onload = function (e) {
+                console.log(e, "666666")
                 if (this.status == 200) {
                     let res = JSON.parse(xhr.response)
                     let params = {
@@ -63,10 +86,6 @@
                     callBack && callBack(params)
                 }
             }
-
-            xhr.open(type, url, true);
-            xhr.setRequestHeader('token', window._blog_token || `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwaG9uZSI6IjE4MzEyMTczNTY4IiwiZXhwIjoxNTkxMjc3ODMwfQ.KJzKUdpmt3eBFLgo7_7UUOcVooC-NH3-0XNEanSS3d8`);
-            data && (xhr.send(data));
         }
 
     });

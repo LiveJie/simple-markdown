@@ -140,6 +140,7 @@
                     dialog.setFileUrl(params)
                 })
             }
+            // _this.speedProgress(divDom)
             this.reset()
             imgWrapperDom.style.display = 'none';
             
@@ -194,7 +195,7 @@
             divDom.className = "list"
             divDom.innerHTML = html;
             fileListDom.appendChild(divDom)
-            _this.speedProgress(divDom)
+            
         }
 
         //点击删除元素
